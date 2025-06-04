@@ -1,12 +1,23 @@
 package nezet;
 
 import java.awt.HeadlessException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import modell.Auto;
 
 public class AutoMegjelenito extends javax.swing.JFrame {
 
+    private List<Auto> autok;
+    
     public AutoMegjelenito() {
         initComponents();
+        autok = new ArrayList<>();
     }
 
     /**
@@ -141,7 +152,19 @@ public class AutoMegjelenito extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mnuPrgBetoltActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPrgBetoltActionPerformed
-        
+        try {
+            List<String> sorok = Files.readAllLines(Path.of("fuvarok.csv"));
+
+            for (int sorIndex = 1; sorIndex < sorok.size(); sorIndex++) {
+                String sor = sorok.get(sorIndex);
+                Auto auto = new Auto(sor);
+                autok.add(auto);
+                cmbRendszam.addItem(auto.getRndszam());
+            }
+            megjelenites(autok.get(0));
+        } catch (IOException ex) {
+            Logger.getLogger(AutoMegjelenito.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_mnuPrgBetoltActionPerformed
 
     private void mnuLkLeghosszFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuLkLeghosszFActionPerformed
@@ -156,6 +179,11 @@ public class AutoMegjelenito extends javax.swing.JFrame {
         kilepes();
     }//GEN-LAST:event_formWindowClosing
 
+    private void megjelenites(Auto auto) {
+        txtFizetesiMod.setText(auto.getFizetesi_mod());
+        chbDohanyzas.setSelected(true);
+    }
+    
     private void kilepes() throws HeadlessException {
         String msg = "Biztos kilépsz?";
         String cim = "Kilépés";
