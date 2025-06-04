@@ -1,18 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package nezet;
 
-/**
- *
- * @author VargaDorotheaTímea(S
- */
+import java.awt.HeadlessException;
+import javax.swing.JOptionPane;
+
 public class AutoMegjelenito extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AutoMegjelenito
-     */
     public AutoMegjelenito() {
         initComponents();
     }
@@ -44,7 +36,12 @@ public class AutoMegjelenito extends javax.swing.JFrame {
         mnuLkLeghosszF = new javax.swing.JMenuItem();
         mnuLkKikDolgoztak = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setText("Válasszon rendszámot:");
 
@@ -70,6 +67,11 @@ public class AutoMegjelenito extends javax.swing.JFrame {
         mnuProgram.add(jSeparator1);
 
         mnuPrgKilep.setText("Kilépés");
+        mnuPrgKilep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuPrgKilepActionPerformed(evt);
+            }
+        });
         mnuProgram.add(mnuPrgKilep);
 
         jMenuBar1.add(mnuProgram);
@@ -139,16 +141,33 @@ public class AutoMegjelenito extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mnuPrgBetoltActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPrgBetoltActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_mnuPrgBetoltActionPerformed
 
     private void mnuLkLeghosszFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuLkLeghosszFActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_mnuLkLeghosszFActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void mnuPrgKilepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPrgKilepActionPerformed
+        kilepes();
+    }//GEN-LAST:event_mnuPrgKilepActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        kilepes();
+    }//GEN-LAST:event_formWindowClosing
+
+    private void kilepes() throws HeadlessException {
+        String msg = "Biztos kilépsz?";
+        String cim = "Kilépés";
+        int msgTip = JOptionPane.QUESTION_MESSAGE;
+        int optTip = JOptionPane.YES_NO_OPTION;
+        int gomb = JOptionPane.showConfirmDialog(rootPane, msg, cim, optTip);
+        if (gomb == JOptionPane.YES_OPTION) {
+            int hibaKod = 0;
+            System.exit(hibaKod);
+        }
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
