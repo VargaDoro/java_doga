@@ -32,12 +32,11 @@ public class AutoMegjelenito extends javax.swing.JFrame {
         cmbRendszam = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        chbDohanyzas = new javax.swing.JCheckBox();
         jLabel5 = new javax.swing.JLabel();
         txtFizetesiMod = new javax.swing.JTextField();
+        txtDoanyzo = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnuProgram = new javax.swing.JMenu();
-        mnuPrgMentes = new javax.swing.JMenuItem();
         mnuPrgBetolt = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         mnuPrgKilep = new javax.swing.JMenuItem();
@@ -54,19 +53,19 @@ public class AutoMegjelenito extends javax.swing.JFrame {
             }
         });
 
+        cmbRendszam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbRendszamActionPerformed(evt);
+            }
+        });
+
         jLabel1.setText("Válasszon rendszámot:");
 
         jLabel3.setText("Lehet doháyozni?:");
 
-        chbDohanyzas.setText("Igen / Nem");
-        chbDohanyzas.setEnabled(false);
-
         jLabel5.setText("Támogatott fizetési mód:");
 
         mnuProgram.setText("Program");
-
-        mnuPrgMentes.setText("Mentés");
-        mnuProgram.add(mnuPrgMentes);
 
         mnuPrgBetolt.setText("Betöltés");
         mnuPrgBetolt.addActionListener(new java.awt.event.ActionListener() {
@@ -117,16 +116,14 @@ public class AutoMegjelenito extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel5))
-                        .addGap(12, 12, 12)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(chbDohanyzas)
-                            .addComponent(txtFizetesiMod)
-                            .addComponent(cmbRendszam, 0, 132, Short.MAX_VALUE)))
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel5)
                     .addComponent(jLabel3))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtFizetesiMod)
+                    .addComponent(cmbRendszam, 0, 132, Short.MAX_VALUE)
+                    .addComponent(txtDoanyzo))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -143,7 +140,7 @@ public class AutoMegjelenito extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(chbDohanyzas))
+                    .addComponent(txtDoanyzo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -155,7 +152,7 @@ public class AutoMegjelenito extends javax.swing.JFrame {
         try {
             List<String> sorok = Files.readAllLines(Path.of("fuvarok.csv"));
 
-            for (int sorIndex = 1; sorIndex < sorok.size(); sorIndex++) {
+            for (int sorIndex = 2; sorIndex < sorok.size(); sorIndex++) {
                 String sor = sorok.get(sorIndex);
                 Auto auto = new Auto(sor);
                 autok.add(auto);
@@ -179,9 +176,15 @@ public class AutoMegjelenito extends javax.swing.JFrame {
         kilepes();
     }//GEN-LAST:event_formWindowClosing
 
+    private void cmbRendszamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRendszamActionPerformed
+        int i = cmbRendszam.getSelectedIndex();
+        Auto auto = autok.get(i);
+        megjelenites(auto);
+    }//GEN-LAST:event_cmbRendszamActionPerformed
+
     private void megjelenites(Auto auto) {
         txtFizetesiMod.setText(auto.getFizetesi_mod());
-        chbDohanyzas.setSelected(true);
+        txtDoanyzo.setText(auto.getDohanyzas());
     }
     
     private void kilepes() throws HeadlessException {
@@ -229,7 +232,6 @@ public class AutoMegjelenito extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox chbDohanyzas;
     private javax.swing.JComboBox<String> cmbRendszam;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
@@ -243,8 +245,8 @@ public class AutoMegjelenito extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuLkOszz;
     private javax.swing.JMenuItem mnuPrgBetolt;
     private javax.swing.JMenuItem mnuPrgKilep;
-    private javax.swing.JMenuItem mnuPrgMentes;
     private javax.swing.JMenu mnuProgram;
+    private javax.swing.JTextField txtDoanyzo;
     private javax.swing.JTextField txtFizetesiMod;
     // End of variables declaration//GEN-END:variables
 }

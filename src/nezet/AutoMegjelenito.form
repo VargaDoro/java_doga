@@ -9,11 +9,6 @@
             <Property name="text" type="java.lang.String" value="Program"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="mnuPrgMentes">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Ment&#xe9;s"/>
-              </Properties>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnuPrgBetolt">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Bet&#xf6;lt&#xe9;s"/>
@@ -96,19 +91,15 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="chbDohanyzas" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtFizetesiMod" max="32767" attributes="0"/>
-                          <Component id="cmbRendszam" alignment="0" pref="132" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
+                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="txtFizetesiMod" max="32767" attributes="0"/>
+                  <Component id="cmbRendszam" alignment="0" pref="132" max="32767" attributes="0"/>
+                  <Component id="txtDoanyzo" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -130,7 +121,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="chbDohanyzas" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtDoanyzo" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -144,6 +135,9 @@
           <StringArray count="0"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbRendszamActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -158,18 +152,14 @@
         <Property name="text" type="java.lang.String" value="Lehet doh&#xe1;yozni?:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="chbDohanyzas">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Igen / Nem"/>
-        <Property name="enabled" type="boolean" value="false"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
         <Property name="text" type="java.lang.String" value="T&#xe1;mogatott fizet&#xe9;si m&#xf3;d:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtFizetesiMod">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtDoanyzo">
     </Component>
   </SubComponents>
 </Form>
