@@ -62,6 +62,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Kik dolgoztak 202.12.31-&#xe9;n?"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuLkKikDolgoztakActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

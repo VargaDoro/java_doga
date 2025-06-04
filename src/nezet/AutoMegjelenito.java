@@ -113,6 +113,11 @@ public class AutoMegjelenito extends javax.swing.JFrame {
         mnuLekerdezes.add(mnuLkLeghosszF);
 
         mnuLkKikDolgoztak.setText("Kik dolgoztak 202.12.31-én?");
+        mnuLkKikDolgoztak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuLkKikDolgoztakActionPerformed(evt);
+            }
+        });
         mnuLekerdezes.add(mnuLkKikDolgoztak);
 
         jMenuBar1.add(mnuLekerdezes);
@@ -198,11 +203,28 @@ public class AutoMegjelenito extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuLkOszzActionPerformed
 
     private void mnuLkDohanyzasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuLkDohanyzasActionPerformed
-        String msg = "Lehet-e az összes autóban dohányozni? "+LehetEDohanyozni();
+        String msg = "Lehet-e az összes autóban dohányozni? "+lehetEDohanyozni();
         JOptionPane.showMessageDialog(rootPane, msg);
     }//GEN-LAST:event_mnuLkDohanyzasActionPerformed
 
-    private boolean LehetEDohanyozni(){
+    private void mnuLkKikDolgoztakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuLkKikDolgoztakActionPerformed
+        String msg = "Ez dolgozott: "+kikDolgoztak("2022.12.31.");
+        JOptionPane.showMessageDialog(rootPane, msg);
+    }//GEN-LAST:event_mnuLkKikDolgoztakActionPerformed
+
+    private String kikDolgoztak(String datum){
+        int N = autok.size(), i = 0;
+        String rndSzam = "";
+        for (Auto auto : autok) {
+            if(auto.getRndszam().equals(datum)){
+                rndSzam += auto.getRndszam();
+                i++;
+            }
+        }
+        return rndSzam; 
+    }
+    
+    private boolean lehetEDohanyozni(){
         int N = autok.size(), i = 0;
         while(i < N && autok.get(i).getDohanyzas() == "igen"){
             i++;
