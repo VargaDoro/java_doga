@@ -208,7 +208,7 @@ public class AutoMegjelenito extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuLkDohanyzasActionPerformed
 
     private void mnuLkKikDolgoztakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuLkKikDolgoztakActionPerformed
-        String msg = "Ez dolgozott: "+kikDolgoztak("2022.12.31.");
+        String msg = "Ők dolgoztak: "+kikDolgoztak("2022.12.31.");
         JOptionPane.showMessageDialog(rootPane, msg);
     }//GEN-LAST:event_mnuLkKikDolgoztakActionPerformed
 
@@ -217,7 +217,7 @@ public class AutoMegjelenito extends javax.swing.JFrame {
         String rndSzam = "";
         for (Auto auto : autok) {
             if(auto.getDatum().equals(datum)){
-                rndSzam += auto.getRndszam();
+                rndSzam += auto.getRndszam()+", ";
             }
         }
         return rndSzam; 
