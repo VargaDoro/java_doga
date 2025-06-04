@@ -216,9 +216,8 @@ public class AutoMegjelenito extends javax.swing.JFrame {
         int N = autok.size(), i = 0;
         String rndSzam = "";
         for (Auto auto : autok) {
-            if(auto.getRndszam().equals(datum)){
+            if(auto.getDatum().equals(datum)){
                 rndSzam += auto.getRndszam();
-                i++;
             }
         }
         return rndSzam; 
