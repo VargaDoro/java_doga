@@ -97,6 +97,11 @@ public class AutoMegjelenito extends javax.swing.JFrame {
         mnuLekerdezes.add(mnuLkOszz);
 
         mnuLkDohanyzas.setText("Minden autóba lehet dohányozni");
+        mnuLkDohanyzas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuLkDohanyzasActionPerformed(evt);
+            }
+        });
         mnuLekerdezes.add(mnuLkDohanyzas);
 
         mnuLkLeghosszF.setText("Leghosszabb fuvar");
@@ -192,7 +197,19 @@ public class AutoMegjelenito extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(rootPane, msg);
     }//GEN-LAST:event_mnuLkOszzActionPerformed
 
+    private void mnuLkDohanyzasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuLkDohanyzasActionPerformed
+        String msg = "Lehet-e az összes autóban dohányozni? "+LehetEDohanyozni();
+        JOptionPane.showMessageDialog(rootPane, msg);
+    }//GEN-LAST:event_mnuLkDohanyzasActionPerformed
 
+    private boolean LehetEDohanyozni(){
+        int N = autok.size(), i = 0;
+        while(i < N && autok.get(i).getDohanyzas() == "igen"){
+            i++;
+        }
+        return i >= N;
+    }
+    
     private int osszBevetel(String rndSzam){
         int N = autok.size();
         int i = 0;
