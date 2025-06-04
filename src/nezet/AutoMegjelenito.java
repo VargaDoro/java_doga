@@ -89,6 +89,11 @@ public class AutoMegjelenito extends javax.swing.JFrame {
         mnuLekerdezes.setText("Lekérdezések");
 
         mnuLkOszz.setText("Össz bevétel");
+        mnuLkOszz.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuLkOszzActionPerformed(evt);
+            }
+        });
         mnuLekerdezes.add(mnuLkOszz);
 
         mnuLkDohanyzas.setText("Minden autóba lehet dohányozni");
@@ -182,6 +187,25 @@ public class AutoMegjelenito extends javax.swing.JFrame {
         megjelenites(auto);
     }//GEN-LAST:event_cmbRendszamActionPerformed
 
+    private void mnuLkOszzActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuLkOszzActionPerformed
+        String msg = "Az 'xyz-456'rendszámú autónak a zösszes bevétele: "+osszBevetel("xyz-456");
+        JOptionPane.showMessageDialog(rootPane, msg);
+    }//GEN-LAST:event_mnuLkOszzActionPerformed
+
+
+    private int osszBevetel(String rndSzam){
+        int N = autok.size();
+        int i = 0;
+        int ossz = 0;
+        for (Auto auto : autok) {
+            if(auto.getRndszam().equals(rndSzam)){
+                ossz += auto.getOsszeg();
+                i++;
+            }
+        }
+        return ossz;
+    }
+    
     private void megjelenites(Auto auto) {
         txtFizetesiMod.setText(auto.getFizetesi_mod());
         txtDoanyzo.setText(auto.getDohanyzas());
